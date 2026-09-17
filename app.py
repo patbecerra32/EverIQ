@@ -255,13 +255,13 @@ st.markdown("""
 # ==============================================================================
 # 2. CREDENTIALS & SEC CIK MAP
 # ==============================================================================
-AZURE_OPENAI_ENDPOINT = "https://<your-foundry-resource>.openai.azure.com/"
-AZURE_OPENAI_KEY = "<your-azure-api-key>"
-DEPLOYMENT_NAME = "gpt-4o"
-API_VERSION = "2024-08-01-preview"
+AZURE_OPENAI_ENDPOINT = st.secrets.get("AZURE_OPENAI_ENDPOINT", "https://ais-strategic-pulse.openai.azure.com/")
+AZURE_OPENAI_KEY = st.secrets.get("AZURE_OPENAI_KEY", "")
+DEPLOYMENT_NAME = st.secrets.get("DEPLOYMENT_NAME", "gpt-4o")
+API_VERSION = st.secrets.get("API_VERSION", "2025-01-01-preview")
 
-FABRIC_SQL_SERVER = "<your-workspace-guid>.datawarehouse.fabric.microsoft.com"
-FABRIC_DATABASE = "lh_evertec_intelligence"
+FABRIC_SQL_SERVER = st.secrets.get("FABRIC_SQL_SERVER", "")
+FABRIC_DATABASE = st.secrets.get("FABRIC_DATABASE", "lh_evertec_intelligence")
 
 SEC_CIK_MAPPING = {
     "EVTC": {"name": "Evertec, Inc.", "cik": "0001559865"},
