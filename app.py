@@ -835,71 +835,71 @@ elif view_idx == 1:
         "ACVA": "#10b981"   # Catalyst Emerald
     }
 
-fig = go.Figure()
+    fig = go.Figure()
 
-# Línea base de referencia (100)
-fig.add_hline(
-    y=100,
-    line_dash="dash",
-    line_color="#475569",  # Tono ligeramente más visible sobre template oscuro
-    line_width=1.2,
-    annotation_text="Baseline (100)",
-    annotation_position="bottom right",
-    annotation_font=dict(color="#94a3b8", size=11),
-)
+    # Línea base de referencia (100)
+    fig.add_hline(
+        y=100,
+        line_dash="dash",
+        line_color="#475569",  # Tono ligeramente más visible sobre template oscuro
+        line_width=1.2,
+        annotation_text="Baseline (100)",
+        annotation_position="bottom right",
+        annotation_font=dict(color="#94a3b8", size=11),
+    )
 
-# Trazas de comparación (benchmarks / competidores)
-for col in normalized.columns:
-    if col != "EVTC":
+    # Trazas de comparación (benchmarks / competidores)
+    for col in normalized.columns:
+        if col != "EVTC":
+            fig.add_trace(
+                go.Scatter(
+                    x=normalized.index,
+                    y=normalized[col],
+                    mode="lines",
+                    name=col,
+                    line=dict(color=color_map.get(col, "#94a3b8"), width=1.5),
+                    hovertemplate="%{y:.2f}",
+                )
+            )
+    
+    # Traza principal destacada
+    if "EVTC" in normalized.columns:
         fig.add_trace(
             go.Scatter(
                 x=normalized.index,
-                y=normalized[col],
+                y=normalized["EVTC"],
                 mode="lines",
-                name=col,
-                line=dict(color=color_map.get(col, "#94a3b8"), width=1.5),
+                name="EVTC (Evertec)",
+                line=dict(color=color_map.get("EVTC", "#38bdf8"), width=3.5),
                 hovertemplate="%{y:.2f}",
             )
         )
-
-# Traza principal destacada
-if "EVTC" in normalized.columns:
-    fig.add_trace(
-        go.Scatter(
-            x=normalized.index,
-            y=normalized["EVTC"],
-            mode="lines",
-            name="EVTC (Evertec)",
-            line=dict(color=color_map.get("EVTC", "#38bdf8"), width=3.5),
-            hovertemplate="%{y:.2f}",
-        )
+    
+    # Textos localizados
+    x_title = "Timeline" if selected_lang == "English" else "Línea de Tiempo"
+    y_title = (
+        "Indexed Performance (100 = Base)"
+        if selected_lang == "English"
+        else "Rendimiento Indexado (100 = Base)"
     )
-
-# Textos localizados
-x_title = "Timeline" if selected_lang == "English" else "Línea de Tiempo"
-y_title = (
-    "Indexed Performance (100 = Base)"
-    if selected_lang == "English"
-    else "Rendimiento Indexado (100 = Base)"
-)
-
-fig.update_layout(
-    template="plotly_dark",
-    height=450,
-    margin=dict(l=20, r=20, t=60, b=20),  # Margen superior ampliado para la leyenda
-    hovermode="x unified",
-    xaxis_title=x_title,
-    yaxis_title=y_title,
-    legend=dict(
-        orientation="h",
-        yanchor="bottom",
-        y=1.02,
-        xanchor="right",
-        x=1,
-    ),
-)
-
-st.plotly_chart(fig, use_container_width=True)
+    
+    fig.update_layout(
+        template="plotly_dark",
+        height=450,
+        margin=dict(l=20, r=20, t=60, b=20),  # Margen superior ampliado para la leyenda
+        hovermode="x unified",
+        xaxis_title=x_title,
+        yaxis_title=y_title,
+        legend=dict(
+            orientation="h",
+            yanchor="bottom",
+            y=1.02,
+            xanchor="right",
+            x=1,
+        ),
+    )
+    
+    st.plotly_chart(fig, use_container_width=True)
 
     st.markdown("---")
     hl_title = "⚡ Strategic Intelligence: EVTC Benchmark Takeaways" if selected_lang == "English" else "⚡ Diagnóstico Estratégico: Posición Bursátil de EVTC"
