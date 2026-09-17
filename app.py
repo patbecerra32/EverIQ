@@ -255,7 +255,7 @@ st.markdown("""
 # ==============================================================================
 # 2. CREDENTIALS & SEC CIK MAP
 # ==============================================================================
-AZURE_OPENAI_ENDPOINT = st.secrets.get("AZURE_OPENAI_ENDPOINT", "https://ais-strategic-pulse.openai.azure.com/")
+AZURE_OPENAI_ENDPOINT = st.secrets.get("AZURE_OPENAI_ENDPOINT", "https://ais-strategic-pulse.openai.azure.com/openai/deployments/gpt-4o/chat/completions?api-version=2025-01-01-preview")
 AZURE_OPENAI_KEY = st.secrets.get("AZURE_OPENAI_KEY", "")
 DEPLOYMENT_NAME = st.secrets.get("DEPLOYMENT_NAME", "gpt-4o")
 API_VERSION = st.secrets.get("API_VERSION", "2025-01-01-preview")
