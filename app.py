@@ -54,9 +54,6 @@ st.markdown("""
         border-radius: 8px !important;
         padding: 10px 14px !important;
         cursor: pointer !important;
-        display: flex !important;
-        align-items: center !important;
-        transition: all 0.15s ease-in-out !important;
 
         /* Reglas para igualar el tamaño */
         width: 100% !important;
