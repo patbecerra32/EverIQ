@@ -57,6 +57,13 @@ st.markdown("""
         display: flex !important;
         align-items: center !important;
         transition: all 0.15s ease-in-out !important;
+
+        /* Reglas para igualar el tamaño */
+        width: 100% !important;
+        box-sizing: border-box !important;
+        display: flex !important;
+        align-items: center !important;
+        min-height: 48px !important;
     }
     div[data-testid="stRadio"] label:hover {
         background: #172338 !important;
